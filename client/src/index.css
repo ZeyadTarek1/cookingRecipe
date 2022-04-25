@@ -13,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to top, #ffffff, #d4d1d4, #aea5a9, #897b7b, #64544f);
 }
 
 h1 {

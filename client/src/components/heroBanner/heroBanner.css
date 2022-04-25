@@ -2,6 +2,8 @@
     border-radius: 0 0 100px 0;
     overflow: hidden;
     position: relative;
+    background-image: linear-gradient(to bottom, #ffffff, #fef8fd, #fff0f3, #ffe9e2, #fbe6d0);
+
 }
 
 .backgroundImage {
@@ -47,7 +49,7 @@
 
 .recipeBtn:hover {
     background-color: white;
-    color: orange;
+    color: black;
     transform: scale(1.05);
 }
 

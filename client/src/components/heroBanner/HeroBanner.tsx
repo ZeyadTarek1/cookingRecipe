@@ -4,7 +4,7 @@ import "./heroBanner.css";
 const HeroBanner = () => {
     return (
         <div className="heroBanner">
-            <BackgroundColor className="backgroundImage" />
+            {/* <BackgroundColor className="backgroundImage" /> */}
             <div className="heroBannerBody">
                 <BannerImg className="heroBannerImg" />
                 <div className="heroBannerContent">

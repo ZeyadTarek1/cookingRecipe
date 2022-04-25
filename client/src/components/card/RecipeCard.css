@@ -1,0 +1,71 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 300px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cardBody {
+    width: 100%;
+    padding: 2px 16px;
+}
+
+.card img {
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.difficulty {
+    font-weight: bold;
+}
+
+.time {
+
+    font-style: normal;
+}
+
+.info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cardBody h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.deleteBtn {
+    height: 50px;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    border: 4px solid black;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.editBtn {
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border: 4px solid black;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
