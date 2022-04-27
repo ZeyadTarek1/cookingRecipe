@@ -1,4 +1,3 @@
-import { ReactComponent as BackgroundColor } from "../../img/color.svg";
 import { ReactComponent as BannerImg } from "../../img/background.svg";
 import "./heroBanner.css";
 const HeroBanner = () => {

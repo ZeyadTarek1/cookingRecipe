@@ -1,4 +1,3 @@
-import React from "react";
 import "./Footer.css";
 import { ReactComponent as FacebookImg } from "../../img/facebook.svg";
 import { ReactComponent as TwitterImg } from "../../img/twitter.svg";
