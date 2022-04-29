@@ -10,7 +10,7 @@ type recipe = {
     time: string;
     ingredients: string;
     instructions: string;
-    image?: File;
+    image: File;
 };
 
 function CreateRecipe() {
@@ -19,11 +19,28 @@ function CreateRecipe() {
         time: "",
         ingredients: "",
         instructions: "",
+        image: new File([""], "file"),
     };
 
     // const allRecipes: recipe[] = [];
-    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        try {
+            const formData = new FormData();
+            formData.append("image", myRecipe.image);
+            formData.append("data", JSON.stringify(myRecipe));
+            fetch("http://localhost:5000/getrecipe", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json, multipart/form-data",
+                },
+
+                // image: myRecipe.image,
+                body: formData,
+            });
+        } catch (e) {}
+
         console.log(myRecipe);
     };
     return (
