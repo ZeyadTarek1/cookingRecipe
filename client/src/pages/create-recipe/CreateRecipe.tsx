@@ -31,7 +31,18 @@ function CreateRecipe() {
             console.log(json);
             return data;
         } catch (e) {
-            console.log(e);
+            console.log("error", e);
+            return e;
+        }
+    };
+
+    const getOneRecipe = async (id: string) => {
+        try {
+            const data = await fetch(`http://localhost:5000/recipe/${id}`);
+            let json = await data.json();
+            console.log(json);
+            return data;
+        } catch (e) {
             console.log("error", e);
             return e;
         }

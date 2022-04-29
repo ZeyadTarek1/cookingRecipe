@@ -65,6 +65,19 @@ app.get("/getRecipes", async (req, res) => {
     }
 });
 
+app.get("/recipe/:id", async (req, res) => {
+    const _id = req.params.id;
+    try {
+        const recipe = await Recipe.findById(_id);
+        if (!recipe) {
+            return res.status(400).send();
+        }
+        res.send(recipe);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
 app.get("/images", async (req, res) => {
     try {
         const image = fs.readFileSync(`./uploads/${req.body.image}`);
