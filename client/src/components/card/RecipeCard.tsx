@@ -5,6 +5,7 @@ const RecipeCard = () => {
         <div className="card">
             <img src={imgR} />
             <div className="cardBody">
+                <h2></h2>
                 <h2>Chicken Pasta</h2>
                 <div className="info">
                     <p className="difficulty">Hard</p>

@@ -35,14 +35,13 @@ app.use(cors(corsOptions));
 app.post("/getrecipe", upload.array("image", "data"), async (req, res) => {
     try {
         const fileName = req.files[0].filename;
-        console.log(fileName);
+        console.log("filename is ", fileName);
         let imgPath;
         if (process.env.NODE_ENV || "development") {
             imgPath = `http://localhost:5000/uploads/${fileName}`;
         } else {
             imgPath = __dirname + "\\uploads\\" + fileName;
         }
-
         const data = JSON.parse(req.body.data);
         const recipe = new Recipe({ ...data, image: imgPath });
         await recipe.save();
@@ -54,11 +53,28 @@ app.post("/getrecipe", upload.array("image", "data"), async (req, res) => {
     }
 });
 
-app.get("/getRecipes", async (req, res) => {});
+app.get("/getRecipes", async (req, res) => {
+    try {
+        const data = await Recipe.find({});
+        if (!data) {
+            return res.status(404).send();
+        }
+        res.send(data);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
 
 app.get("/images", async (req, res) => {
-    const temp = fs.readFileSync(`./uploads/${req.body.image}`);
-    res.send(temp);
+    try {
+        const image = fs.readFileSync(`./uploads/${req.body.image}`);
+        if (!image) {
+            return res.status(404).send();
+        }
+        res.send(image);
+    } catch (e) {
+        res.status(500).send(e);
+    }
 });
 
 try {

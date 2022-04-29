@@ -5,6 +5,7 @@ import TextAreaInput from "../../components/utils/input/TextAreaInput";
 import TypeInput from "../../components/utils/input/TypeInput";
 import cookingBackground from "../../img/cooking background-min.jpg";
 
+const allRecipes: recipe[] = [];
 type recipe = {
     title: string;
     time: string;
@@ -22,7 +23,19 @@ function CreateRecipe() {
         image: new File([""], "file"),
     };
 
-    // const allRecipes: recipe[] = [];
+    const getAllRecipes = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const data = await fetch("http://localhost:5000/getRecipes");
+            let json = await data.json();
+            console.log(json);
+            return data;
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    };
+
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -32,21 +45,17 @@ function CreateRecipe() {
             formData.append("data", JSON.stringify(myRecipe));
             fetch("http://localhost:5000/getrecipe", {
                 method: "POST",
-                headers: {
-                    "content-type": "application/json, multipart/form-data",
-                },
-
-                // image: myRecipe.image,
                 body: formData,
             });
         } catch (e) {}
 
         console.log(myRecipe);
     };
+
     return (
         <CreateRecipeContainer>
             <CreateRecipeForm>
-                <FormCard onSubmit={submitHandler}>
+                <FormCard onSubmit={getAllRecipes}>
                     <FormCardHead>
                         <h4>Create a Recipe</h4>
                     </FormCardHead>
