@@ -77,6 +77,49 @@ app.get("/images", async (req, res) => {
     }
 });
 
+app.delete("/recipes/:id", async (req, res) => {
+    try {
+        const recipe = await Recipe.findByIdAndDelete(req.params.id);
+        if (!recipe) {
+            return res.status(404).send();
+        }
+        res.send(recipe);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+app.patch("/recipes/:id", async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = [
+        "title",
+        "time",
+        "ingredients",
+        "instructions",
+        "image",
+    ];
+    const isValidOperation = updates.every((update) =>
+        allowedUpdates.includes(update)
+    );
+
+    if (!isValidOperation) {
+        return res.status(400).send({ error: "Invalid Operation" });
+    }
+
+    try {
+        const recipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+        });
+        if (!recipe) {
+            return res.status(404).send();
+        }
+        res.send(recipe);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
 try {
     app.listen(port, () => {
         console.log(`Server running on port ${port}`);

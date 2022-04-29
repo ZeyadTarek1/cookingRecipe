@@ -32,7 +32,34 @@ function CreateRecipe() {
             return data;
         } catch (e) {
             console.log(e);
+            console.log("error", e);
             return e;
+        }
+    };
+
+    const deleteRecipe = async (id: string) => {
+        try {
+            const data = await fetch(`localhost:5000/recipes/${id}`, {
+                method: "DELETE",
+            });
+            console.log("deleted", data);
+        } catch (e) {
+            console.log("error", e);
+        }
+    };
+
+    const updateRecipe = async (id: string) => {
+        try {
+            const data = await fetch(`localhost:5000/recipes/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    time: "0",
+                    ingredients: "patching",
+                    instructions: "t",
+                }),
+            });
+        } catch (e) {
+            console.log("error", e);
         }
     };
 
@@ -47,7 +74,9 @@ function CreateRecipe() {
                 method: "POST",
                 body: formData,
             });
-        } catch (e) {}
+        } catch (e) {
+            console.log("error", e);
+        }
 
         console.log(myRecipe);
     };
