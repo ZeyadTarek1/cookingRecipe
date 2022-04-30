@@ -133,6 +133,9 @@ app.patch("/recipes/:id", upload.array("image", "data"), async (req, res) => {
     }
 });
 
+app.get("*", function (req, res) {
+    res.render("public/index.html");
+});
 try {
     app.listen(port, () => {
         console.log(`Server running on port ${port}`);
