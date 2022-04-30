@@ -2,6 +2,7 @@ const express = require("express");
 const Recipe = require("./models/recipe.js");
 const cors = require("cors");
 const multer = require("multer");
+const path = require("path");
 require("./db.js");
 
 const fileStorage = multer.diskStorage({
@@ -15,7 +16,7 @@ const fileStorage = multer.diskStorage({
 
 const upload = multer({ storage: fileStorage });
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const whitelist = ["http://localhost:3000"];
 
 const corsOptions = {
