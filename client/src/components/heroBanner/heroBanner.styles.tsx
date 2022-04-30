@@ -44,6 +44,7 @@ export const HeroBannerContent = styled.div`
 
 export const BtnWrapper = styled.div`
     text-align: center;
+
     .recipeBtn {
         height: 75px;
         background-color: transparent;
@@ -56,8 +57,7 @@ export const BtnWrapper = styled.div`
         margin: 10px 0px;
         font-weight: bold;
         transition: all 0.3s ease-in-out;
-
-        hover {
+        :hover {
             background-color: white;
             color: black;
             transform: scale(1.05);

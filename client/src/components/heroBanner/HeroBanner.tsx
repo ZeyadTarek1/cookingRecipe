@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { ReactComponent as BannerImg } from "../../img/background.svg";
 import {
     BtnWrapper,
@@ -7,6 +8,11 @@ import {
 } from "./heroBanner.styles";
 
 const HeroBanner = () => {
+    let navigate = useNavigate();
+
+    const navigateCreate = () => {
+        navigate("create-receipe");
+    };
     return (
         <Herobanner className="heroBanner">
             <HeroBannerBody>
@@ -21,7 +27,9 @@ const HeroBanner = () => {
                         nulla est.
                     </p>
                     <BtnWrapper>
-                        <button className="recipeBtn">Create Recipe</button>
+                        <button className="recipeBtn" onClick={navigateCreate}>
+                            Create Recipe
+                        </button>
                     </BtnWrapper>
                 </HeroBannerContent>
             </HeroBannerBody>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { deleteData } from "../../api";
 import { recipeModel } from "../../models";
-import "./RecipeCard.css";
+import "./recipeCard.css";
 
 type recipeCard = recipeModel & { getData: () => void };
 const RecipeCard = ({
@@ -31,7 +31,6 @@ const RecipeCard = ({
         <div className="card">
             <img src={image} />
             <div className="cardBody">
-                <h2></h2>
                 <h2>{title}</h2>
                 <div className="info">
                     <p className="time">{time} minutes</p>
