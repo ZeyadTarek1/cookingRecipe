@@ -40,7 +40,7 @@ app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
         const fileName = req.files[0].filename;
         console.log(req.body.data);
         let imgPath;
-        if (process.env.NODE_ENV || "development") {
+        if (process.env.NODE_ENV === "development") {
             imgPath = `http://localhost:5000/uploads/${fileName}`;
         } else {
             imgPath = __dirname + "\\uploads\\" + fileName;
