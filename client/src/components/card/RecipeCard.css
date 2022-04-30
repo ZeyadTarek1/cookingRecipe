@@ -27,11 +27,11 @@
 }
 
 .card img {
-  width: 100%;
   cursor: pointer;
   height: 298px;
   width: 298px;
 }
+
 
 .difficulty {
   font-weight: bold;

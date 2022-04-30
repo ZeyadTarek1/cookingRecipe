@@ -11,6 +11,7 @@ const RecipeCard = ({
     ingredients,
     instructions,
     image,
+    description,
     getData,
 }: recipeCard) => {
     let navigate = useNavigate();
@@ -23,20 +24,24 @@ const RecipeCard = ({
         getData();
     };
 
-    const navigateRecipe = () => {
+    const navigateEditRecipe = () => {
         navigate(`/editRecipe/${_id}`);
+    };
+
+    const navigateViewRecipe = () => {
+        navigate(`/view-recipe/${_id}`);
     };
 
     return (
         <div className="card">
-            <img src={image} />
+            <img src={image} onClick={navigateViewRecipe} />
             <div className="cardBody">
                 <h2>{title}</h2>
                 <div className="info">
                     <p className="time">{time} minutes</p>
                 </div>
                 <div className="buttons">
-                    <button className="editBtn" onClick={navigateRecipe}>
+                    <button className="editBtn" onClick={navigateEditRecipe}>
                         Edit
                     </button>
                     <button className="deleteBtn" onClick={deleteRecipe}>

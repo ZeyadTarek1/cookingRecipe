@@ -25,6 +25,7 @@ function CreateRecipe() {
         time: "",
         ingredients: "",
         instructions: "",
+        description: "",
         image: new File([""], "file"),
     };
 
@@ -85,6 +86,13 @@ function CreateRecipe() {
                         />
                     </FormCardBody>
                     <div className="ingredients">
+                        <TextAreaInput
+                            label="Description"
+                            name="description"
+                            inputFunction={(value) => {
+                                myRecipe.description = value;
+                            }}
+                        />
                         <TextAreaInput
                             label="Ingredients"
                             name="ingredients"

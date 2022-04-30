@@ -5,4 +5,5 @@ export type recipeModel = {
     ingredients: string;
     instructions: string;
     image: string;
+    description: string;
 };

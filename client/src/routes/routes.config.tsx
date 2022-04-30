@@ -14,7 +14,7 @@ const GetRoutes = () => {
             element: <CreateRecipe />,
         },
         {
-            path: "/view-recipe",
+            path: "/view-recipe/:id",
             element: <ViewRecipe />,
         },
     ]);
