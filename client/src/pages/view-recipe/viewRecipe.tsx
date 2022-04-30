@@ -12,7 +12,9 @@ const ViewRecipe = () => {
 
     const getRecipe = async () => {
         setDetailedRecipe(
-            await getData(`http://localhost:5000/recipe/${params.id}`)
+            await getData(
+                `https://cooking-recipe-mern.herokuapp.com/recipe/${params.id}`
+            )
         );
     };
 
