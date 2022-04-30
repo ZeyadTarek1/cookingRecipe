@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { deleteData } from "../../api";
 import { recipeModel } from "../../models";
-import "./recipeCard.css";
+import "./RecipeCard.css";
 
 type recipeCard = recipeModel & { getData: () => void };
 const RecipeCard = ({
