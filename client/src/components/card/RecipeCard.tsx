@@ -17,7 +17,7 @@ const RecipeCard = ({
     let navigate = useNavigate();
 
     const deleteRecipe = async () => {
-        const link = `http://localhost:5000/recipes/${_id}`;
+        const link = `https://cooking-recipe-mern.herokuapp.com/recipes/${_id}`;
         console.log(link);
 
         await deleteData(link);
