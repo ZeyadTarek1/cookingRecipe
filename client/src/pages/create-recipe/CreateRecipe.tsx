@@ -33,6 +33,7 @@ function CreateRecipe() {
         e.preventDefault();
 
         try {
+            console.log(myRecipe);
             const formData = new FormData();
             formData.append("image", myRecipe.image);
             formData.append("data", JSON.stringify(myRecipe));

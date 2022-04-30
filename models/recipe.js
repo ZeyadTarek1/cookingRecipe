@@ -20,6 +20,9 @@ const Recipe = mongoose.model("Recipe", {
     image: {
         type: String,
     },
+    description: {
+        type: String,
+    },
 });
 
 module.exports = Recipe;

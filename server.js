@@ -36,7 +36,7 @@ app.use(express.static("public"));
 app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
     try {
         const fileName = req.files[0].filename;
-
+        console.log(req.body.data);
         let imgPath;
         if (process.env.NODE_ENV || "development") {
             imgPath = `http://localhost:5000/uploads/${fileName}`;
@@ -46,7 +46,6 @@ app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
         const data = JSON.parse(req.body.data);
         const recipe = new Recipe({ ...data, image: imgPath });
         await recipe.save();
-        console.log(recipe);
         res.status(200).send(recipe);
     } catch (e) {
         res.status(500).send(e);
@@ -134,13 +133,13 @@ app.patch("/recipes/:id", upload.array("image", "data"), async (req, res) => {
     }
 });
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "client/build")));
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static(path.join(__dirname, "client/build")));
 
-    app.get("*", function (req, res) {
-        res.sendFile(path.join(__dirname, "client/build", "index.html"));
-    });
-}
+//     app.get("*", function (req, res) {
+//         res.sendFile(path.join(__dirname, "client/build", "index.html"));
+//     });
+// }
 
 try {
     app.listen(port, () => {
