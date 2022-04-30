@@ -36,7 +36,7 @@ app.use(express.static("public"));
 app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
     try {
         const fileName = req.files[0].filename;
-        console.log("filename is ", fileName);
+
         let imgPath;
         if (process.env.NODE_ENV || "development") {
             imgPath = `http://localhost:5000/uploads/${fileName}`;
@@ -91,8 +91,9 @@ app.delete("/recipes/:id", async (req, res) => {
     }
 });
 
-app.patch("/recipes/:id", async (req, res) => {
-    const updates = Object.keys(req.body);
+app.patch("/recipes/:id", upload.array("image", "data"), async (req, res) => {
+    const data = JSON.parse(req.body.data);
+    const updates = Object.keys(data);
     const allowedUpdates = [
         "title",
         "time",
@@ -100,16 +101,27 @@ app.patch("/recipes/:id", async (req, res) => {
         "instructions",
         "image",
     ];
-    const isValidOperation = updates.every((update) =>
-        allowedUpdates.includes(update)
-    );
+    // const isValidOperation = updates.every((update) =>
+    //     allowedUpdates.includes(update)
+    // );
 
-    if (!isValidOperation) {
-        return res.status(400).send({ error: "Invalid Operation" });
+    // if (!isValidOperation) {
+    //     return res.status(400).send({ error: "Invalid Operation" });
+    // }
+
+    const fileName = req.files[0].filename;
+    const fileSize = req.files[0].size;
+
+    if (fileSize !== 0) {
+        if (process.env.NODE_ENV || "development") {
+            data.image = `http://localhost:5000/uploads/${fileName}`;
+        } else {
+            data.image = __dirname + "\\uploads\\" + fileName;
+        }
     }
 
     try {
-        const recipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, {
+        const recipe = await Recipe.findByIdAndUpdate(req.params.id, data, {
             new: true,
             runValidators: true,
         });

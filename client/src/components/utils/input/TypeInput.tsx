@@ -23,7 +23,7 @@ const TypeInput = ({
     style,
     inputFunction,
 }: ModInputProps) => {
-    const [fieldValue, setFieldValue] = useState<string>(value);
+    const [fieldValue, setFieldValue] = useState<string>(value ? value : "");
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         inputFunction(event.target.value);

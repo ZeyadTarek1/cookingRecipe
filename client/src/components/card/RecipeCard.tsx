@@ -25,7 +25,7 @@ const RecipeCard = ({
     };
 
     const navigateEditRecipe = () => {
-        navigate(`/editRecipe/${_id}`);
+        navigate(`/edit-recipe/${_id}`);
     };
 
     const navigateViewRecipe = () => {

@@ -1,5 +1,3 @@
-import { title } from "process";
-import { useState } from "react";
 import { recipeModel } from "../../models";
 import { RecipeCard, RecipeCardBody } from "./detailedCard.styles";
 
