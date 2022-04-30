@@ -14,15 +14,15 @@ const NavbarBootstrap = () => {
                         <Nav.Link as={NavLink} to="/">
                             Home
                         </Nav.Link>
-                        <Nav.Link as={NavLink} to="/create-receipe">
+                        <Nav.Link as={NavLink} to="/create-recipe">
                             Create Recipe
                         </Nav.Link>
-                        <Nav.Link as={NavLink} to="/about">
+                        {/* <Nav.Link as={NavLink} to="/about">
                             About
                         </Nav.Link>
                         <Nav.Link as={NavLink} to="/contact">
                             Contact
-                        </Nav.Link>
+                        </Nav.Link> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

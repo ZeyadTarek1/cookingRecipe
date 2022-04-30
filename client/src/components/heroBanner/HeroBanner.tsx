@@ -11,7 +11,7 @@ const HeroBanner = () => {
     let navigate = useNavigate();
 
     const navigateCreate = () => {
-        navigate("create-receipe");
+        navigate("create-recipe");
     };
     return (
         <Herobanner className="heroBanner">

@@ -2,7 +2,6 @@ const express = require("express");
 const Recipe = require("./models/recipe.js");
 const cors = require("cors");
 const multer = require("multer");
-const fs = require("fs");
 require("./db.js");
 
 const fileStorage = multer.diskStorage({

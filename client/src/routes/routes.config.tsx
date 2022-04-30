@@ -11,7 +11,7 @@ const GetRoutes = () => {
             element: <Home />,
         },
         {
-            path: "/create-receipe",
+            path: "/create-recipe",
             element: <CreateRecipe />,
         },
         {
