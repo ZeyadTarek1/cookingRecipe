@@ -3,14 +3,17 @@
   transition: all 0.3s;
   width: 300px;
   overflow: hidden;
-  background: #BA5370;
+  background: #e1eec3;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #F4E2D8, #BA5370);
+  background: -webkit-linear-gradient(to bottom, #f05053, #e1eec3);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #F4E2D8, #BA5370);
+  background: linear-gradient(to bottom, #f05053, #e1eec3);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  border: 1px solid rgba(255, 255, 255, 0.3);
+
+
+
+  border-radius: 12px;
 }
 
 .card:hover {
