@@ -133,9 +133,14 @@ app.patch("/recipes/:id", upload.array("image", "data"), async (req, res) => {
     }
 });
 
-app.get("*", function (req, res) {
-    res.render("public/index.html");
-});
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(dirname, "client/build")));
+
+    app.get("*", function (req, res) {
+        res.sendFile(path.join(dirname, "client/build", "index.html"));
+    });
+}
+
 try {
     app.listen(port, () => {
         console.log(`Server running on port ${port}`);
