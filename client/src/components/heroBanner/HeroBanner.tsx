@@ -1,12 +1,17 @@
 import { ReactComponent as BannerImg } from "../../img/background.svg";
-import "./heroBanner.css";
+import {
+    BtnWrapper,
+    Herobanner,
+    HeroBannerBody,
+    HeroBannerContent,
+} from "./heroBanner.styles";
+
 const HeroBanner = () => {
     return (
-        <div className="heroBanner">
-            {/* <BackgroundColor className="backgroundImage" /> */}
-            <div className="heroBannerBody">
+        <Herobanner className="heroBanner">
+            <HeroBannerBody>
                 <BannerImg className="heroBannerImg" />
-                <div className="heroBannerContent">
+                <HeroBannerContent>
                     <h1>Cooking</h1>
                     <p>
                         Lorem ipsum, dolor sit amet consectetur adipisicing
@@ -15,12 +20,12 @@ const HeroBanner = () => {
                         blanditiis ab consectetur! Expedita doloremque porro
                         nulla est.
                     </p>
-                    <div className="btnWrapper">
+                    <BtnWrapper>
                         <button className="recipeBtn">Create Recipe</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </BtnWrapper>
+                </HeroBannerContent>
+            </HeroBannerBody>
+        </Herobanner>
     );
 };
 

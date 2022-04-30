@@ -7,7 +7,7 @@ require("./db.js");
 
 const fileStorage = multer.diskStorage({
     destination: (_req, _file, callbackf) => {
-        callbackf(null, "./uploads");
+        callbackf(null, "./public/uploads");
     },
     filename: (req, file, callback) => {
         callback(null, file.originalname);
@@ -31,8 +31,9 @@ const corsOptions = {
 };
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(express.static("public"));
 
-app.post("/getrecipe", upload.array("image", "data"), async (req, res) => {
+app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
     try {
         const fileName = req.files[0].filename;
         console.log("filename is ", fileName);
@@ -73,18 +74,6 @@ app.get("/recipe/:id", async (req, res) => {
             return res.status(400).send();
         }
         res.send(recipe);
-    } catch (e) {
-        res.status(500).send(e);
-    }
-});
-
-app.get("/images", async (req, res) => {
-    try {
-        const image = fs.readFileSync(`./uploads/${req.body.image}`);
-        if (!image) {
-            return res.status(404).send();
-        }
-        res.send(image);
     } catch (e) {
         res.status(500).send(e);
     }
