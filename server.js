@@ -5,8 +5,6 @@ const multer = require("multer");
 const path = require("path");
 require("./db.js");
 
-console.log(__dirname);
-
 const fileStorage = multer.diskStorage({
     destination: (_req, _file, callbackf) => {
         callbackf(null, "./public/uploads");
@@ -40,10 +38,13 @@ app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
         const fileName = req.files[0].filename;
         console.log(req.body.data);
         let imgPath;
-        if (process.env.NODE_ENV === "development") {
+        if (process.env.NODE_ENV !== "production") {
             imgPath = `http://localhost:5000/uploads/${fileName}`;
+            console.log("development server");
         } else {
-            imgPath = __dirname + "\\uploads\\" + fileName;
+            imgPath =
+                "https://cooking-recipe-mern.herokuapp.com/uploads/" + fileName;
+            console.log("production server");
         }
         const data = JSON.parse(req.body.data);
         const recipe = new Recipe({ ...data, image: imgPath });
