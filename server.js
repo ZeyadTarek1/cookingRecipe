@@ -5,6 +5,8 @@ const multer = require("multer");
 const path = require("path");
 require("./db.js");
 
+console.log(__dirname);
+
 const fileStorage = multer.diskStorage({
     destination: (_req, _file, callbackf) => {
         callbackf(null, "./public/uploads");
