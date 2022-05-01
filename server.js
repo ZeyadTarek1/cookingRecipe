@@ -19,33 +19,33 @@ const app = express();
 const port = process.env.PORT || 5000;
 const whitelist = ["http://localhost:3000"];
 
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//         if (!origin || whitelist.indexOf(origin) !== -1) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error("Not allowed by CORS"));
-//         }
-//     },
-//     credentials: true,
-// };
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+};
 app.use(express.json());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.static("public"));
 
 app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
     try {
         const fileName = req.files[0].filename;
         console.log(req.body.data);
-        let imgPath;
-        if (process.env.NODE_ENV !== "production") {
-            imgPath = `http://localhost:5000/uploads/${fileName}`;
-            console.log("development server");
-        } else {
-            imgPath =
-                "https://cooking-recipe-mern.herokuapp.com/uploads/" + fileName;
-            console.log("production server");
-        }
+        let imgPath = "http://localhost:5000/uploads/" + fileName;
+        // if (process.env.NODE_ENV !== "production") {
+        //     imgPath = `http://localhost:5000/uploads/${fileName}`;
+        //     console.log("development server");
+        // } else {
+        //     imgPath =
+        //         "https://cooking-recipe-mern.herokuapp.com/uploads/" + fileName;
+        //     console.log("production server");
+        // }
         const data = JSON.parse(req.body.data);
         const recipe = new Recipe({ ...data, image: imgPath });
         await recipe.save();

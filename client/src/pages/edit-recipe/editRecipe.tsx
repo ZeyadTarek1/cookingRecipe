@@ -26,9 +26,7 @@ const EditRecipe = () => {
 
     const getRecipe = async () => {
         setDetailedRecipe(
-            await getData(
-                `https://cooking-recipe-mern.herokuapp.com/recipe/${params.id}`
-            )
+            await getData(`http://localhost:5000/recipe/${params.id}`)
         );
     };
 
@@ -71,7 +69,7 @@ const EditRecipe = () => {
             formData.append("image", recipeData.image);
             formData.append("data", JSON.stringify(updatedRecipe));
             await updateData(
-                `https://cooking-recipe-mern.herokuapp.com/recipes/${params.id}`,
+                `http://localhost:5000/recipes/${params.id}`,
                 formData
             );
             navigate("/");

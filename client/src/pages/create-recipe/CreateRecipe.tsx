@@ -37,10 +37,7 @@ function CreateRecipe() {
             const formData = new FormData();
             formData.append("image", myRecipe.image);
             formData.append("data", JSON.stringify(myRecipe));
-            await saveData(
-                "https://cooking-recipe-mern.herokuapp.com/createRecipe",
-                formData
-            );
+            await saveData("http://localhost:5000/createRecipe", formData);
             navigate("/");
         } catch (e) {
             console.log("error", e);

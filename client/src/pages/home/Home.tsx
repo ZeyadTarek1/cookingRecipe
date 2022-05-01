@@ -10,11 +10,7 @@ function Home() {
     const [allRecipes, setAllrecipes] = useState<recipeModel[]>();
 
     const getdatafunction = async () => {
-        setAllrecipes(
-            await getData(
-                "https://cooking-recipe-mern.herokuapp.com/getRecipes"
-            )
-        );
+        setAllrecipes(await getData("http://localhost:5000/getRecipes"));
     };
 
     useEffect(() => {
