@@ -115,7 +115,7 @@ app.patch("/recipes/:id", upload.array("image", "data"), async (req, res) => {
     const fileSize = req.files[0].size;
 
     if (fileSize !== 0) {
-        if (process.env.NODE_ENV || "development") {
+        if (process.env.NODE_ENV !== "production") {
             data.image = `http://localhost:5000/uploads/${fileName}`;
         } else {
             data.image = __dirname + "\\uploads\\" + fileName;
