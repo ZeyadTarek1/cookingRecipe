@@ -27,16 +27,21 @@ export const Herobanner = styled.div`
 export const HeroBannerBody = styled.div`
     padding: 50px 0;
     display: flex;
+    .bannerImg {
+        flex: 2;
+    }
 `;
 
 export const HeroBannerContent = styled.div`
+    flex: 3;
     h1 {
         text-align: center;
         margin: 20px;
-        font-weight: bold;
-        color: #2e2d2d;
+        font-weight: bolder;
+        color: #ffffff;
     }
     p {
+        font-weight: bold;
         word-spacing: 5px;
         color: #ffffff;
     }

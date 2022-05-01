@@ -43,9 +43,9 @@ const Footer = () => {
                     Create Recipe
                 </p>
                 <p>·</p>
-                {/* <p className="footerText" >About</p>
+                <p className="footerText">About</p>
                 <p>·</p>
-                <p className="footerText">Contact</p> */}
+                <p className="footerText">Contact</p>
             </div>
 
             <div className="copywrite">

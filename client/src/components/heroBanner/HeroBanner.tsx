@@ -14,17 +14,17 @@ const HeroBanner = () => {
         navigate("create-recipe");
     };
     return (
-        <Herobanner className="heroBanner">
+        <Herobanner>
             <HeroBannerBody>
-                <BannerImg className="heroBannerImg" />
+                <BannerImg className="bannerImg" />
                 <HeroBannerContent>
-                    <h1>Cooking</h1>
+                    <h1>Tasty </h1>
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Ipsa dicta sed aperiam, eum dolorum tenetur magnam
-                        itaque voluptas cupiditate vitae. Maiores pariatur
-                        blanditiis ab consectetur! Expedita doloremque porro
-                        nulla est.
+                        Feeling hungry? Looking for something new? <br /> Look
+                        no further! Here you can find the recipes of different
+                        cuisines from all around the world!
+                        <br /> Or even better - you can create your own recipe
+                        to share with the world!
                     </p>
                     <BtnWrapper>
                         <button className="recipeBtn" onClick={navigateCreate}>

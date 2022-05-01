@@ -17,12 +17,19 @@ const NavbarBootstrap = () => {
                         <Nav.Link as={NavLink} to="/create-recipe">
                             Create Recipe
                         </Nav.Link>
-                        {/* <Nav.Link as={NavLink} to="/about">
+                        <Nav.Link as={NavLink} to="/about">
                             About
                         </Nav.Link>
-                        <Nav.Link as={NavLink} to="/contact">
+                        <Nav.Link
+                            as={NavLink}
+                            to={{
+                                pathname:
+                                    "https://github.com/ZeyadTarek1/cookingRecipe",
+                            }}
+                            target="_blank"
+                        >
                             Contact
-                        </Nav.Link> */}
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

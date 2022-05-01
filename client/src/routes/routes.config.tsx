@@ -1,4 +1,5 @@
 import { useRoutes } from "react-router";
+import About from "../pages/about/About";
 import CreateRecipe from "../pages/create-recipe/CreateRecipe";
 import EditRecipe from "../pages/edit-recipe/editRecipe";
 import Home from "../pages/home/Home";
@@ -21,6 +22,10 @@ const GetRoutes = () => {
         {
             path: "/edit-recipe/:id",
             element: <EditRecipe />,
+        },
+        {
+            path: "/about",
+            element: <About />,
         },
     ]);
     return routes;
