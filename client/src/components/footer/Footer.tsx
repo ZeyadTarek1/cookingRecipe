@@ -43,9 +43,21 @@ const Footer = () => {
                     Create Recipe
                 </p>
                 <p>·</p>
-                <p className="footerText">About</p>
+                <p className="footerText" onClick={() => navigate("/about")}>
+                    About
+                </p>
                 <p>·</p>
-                <p className="footerText">Contact</p>
+                <p
+                    className="footerText"
+                    onClick={() =>
+                        window.open(
+                            "https://github.com/ZeyadTarek1/cookingRecipe",
+                            "_blank"
+                        )
+                    }
+                >
+                    Contact
+                </p>
             </div>
 
             <div className="copywrite">
