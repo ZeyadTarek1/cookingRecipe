@@ -19,42 +19,21 @@ const app = express();
 const port = process.env.PORT || 5000;
 const whitelist = ["http://localhost:3000"];
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || whitelist.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    credentials: true,
-};
+if (process.env.NODE_ENV !== "production") {
+    const corsOptions = {
+        origin: function (origin, callback) {
+            if (!origin || whitelist.indexOf(origin) !== -1) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        credentials: true,
+    };
+    app.use(cors(corsOptions));
+}
 app.use(express.json());
-app.use(cors(corsOptions));
 app.use(express.static("public"));
-
-app.post("/createRecipe", upload.array("image", "data"), async (req, res) => {
-    try {
-        const fileName = req.files[0].filename;
-        console.log(req.body.data);
-        let imgPath = "http://localhost:5000/uploads/" + fileName;
-        // if (process.env.NODE_ENV !== "production") {
-        //     imgPath = `http://localhost:5000/uploads/${fileName}`;
-        //     console.log("development server");
-        // } else {
-        //     imgPath =
-        //         "https://cooking-recipe-mern.herokuapp.com/uploads/" + fileName;
-        //     console.log("production server");
-        // }
-        const data = JSON.parse(req.body.data);
-        const recipe = new Recipe({ ...data, image: imgPath });
-        await recipe.save();
-        res.status(200).send(recipe);
-    } catch (e) {
-        res.status(500).send(e);
-        console.log(e);
-    }
-});
 
 app.get("/getRecipes", async (req, res) => {
     try {
@@ -81,7 +60,22 @@ app.get("/recipe/:id", async (req, res) => {
     }
 });
 
-app.delete("/recipes/:id", async (req, res) => {
+app.post("/recipe", upload.array("image", "data"), async (req, res) => {
+    try {
+        const fileName = req.files[0].filename;
+        let imgPath =
+            req.protocol + "://" + req.get("host") + "/uploads/" + fileName;
+        const data = JSON.parse(req.body.data);
+        const recipe = new Recipe({ ...data, image: imgPath });
+        await recipe.save();
+        res.status(200).send(recipe);
+    } catch (e) {
+        res.status(500).send(e);
+        console.log(e);
+    }
+});
+
+app.delete("/recipe/:id", async (req, res) => {
     try {
         const recipe = await Recipe.findByIdAndDelete(req.params.id);
         if (!recipe) {
@@ -93,33 +87,15 @@ app.delete("/recipes/:id", async (req, res) => {
     }
 });
 
-app.patch("/recipes/:id", upload.array("image", "data"), async (req, res) => {
+app.patch("/recipe/:id", upload.array("image", "data"), async (req, res) => {
     const data = JSON.parse(req.body.data);
-    const updates = Object.keys(data);
-    const allowedUpdates = [
-        "title",
-        "time",
-        "ingredients",
-        "instructions",
-        "image",
-    ];
-    // const isValidOperation = updates.every((update) =>
-    //     allowedUpdates.includes(update)
-    // );
-
-    // if (!isValidOperation) {
-    //     return res.status(400).send({ error: "Invalid Operation" });
-    // }
 
     const fileName = req.files[0].filename;
     const fileSize = req.files[0].size;
 
     if (fileSize !== 0) {
-        if (process.env.NODE_ENV !== "production") {
-            data.image = `http://localhost:5000/uploads/${fileName}`;
-        } else {
-            data.image = __dirname + "\\uploads\\" + fileName;
-        }
+        data.image =
+            req.protocol + "://" + req.get("host") + "/uploads/" + fileName;
     }
 
     try {
@@ -146,7 +122,7 @@ if (process.env.NODE_ENV === "production") {
 
 try {
     app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
+        console.log(`Server running on port: ${port}`);
     });
 } catch (e) {
     console.log(e);

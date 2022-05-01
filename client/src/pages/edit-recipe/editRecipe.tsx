@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { getData, saveData, updateData } from "../../api";
+import { getRecipeDetails, updateRecipe } from "../../api";
 import ModifyRecipe from "../../components/recipe-modification/ModifyRecipe";
 
 import editBackground from "../../img/editRecipe.jpg";
@@ -25,9 +25,7 @@ const EditRecipe = () => {
     const [detailedRecipe, setDetailedRecipe] = useState<recipeModel>(myRecipe);
 
     const getRecipe = async () => {
-        setDetailedRecipe(
-            await getData(`http://localhost:5000/recipe/${params.id}`)
-        );
+        setDetailedRecipe(await getRecipeDetails(params.id));
     };
 
     useEffect(() => {
@@ -68,10 +66,7 @@ const EditRecipe = () => {
             const formData = new FormData();
             formData.append("image", recipeData.image);
             formData.append("data", JSON.stringify(updatedRecipe));
-            await updateData(
-                `http://localhost:5000/recipes/${params.id}`,
-                formData
-            );
+            await updateRecipe(formData, params.id);
             navigate("/");
         } catch (e) {
             console.log("error", e);

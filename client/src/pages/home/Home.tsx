@@ -1,6 +1,6 @@
 import RecipeCard from "../../components/card/RecipeCard";
 import HeroBanner from "../../components/heroBanner/HeroBanner";
-import { getData } from "../../api";
+import { getRecipes } from "../../api";
 import { recipeModel } from "../../models";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ function Home() {
     const [allRecipes, setAllrecipes] = useState<recipeModel[]>();
 
     const getdatafunction = async () => {
-        setAllrecipes(await getData("http://localhost:5000/getRecipes"));
+        setAllrecipes(await getRecipes());
     };
 
     useEffect(() => {

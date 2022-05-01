@@ -4,6 +4,16 @@ export type recipeModel = {
     time: string;
     ingredients: string;
     instructions: string;
-    image: string;
     description: string;
+    image: string;
+};
+
+export const defaultRecipe: recipeModel = {
+    _id: "",
+    title: "",
+    time: "",
+    ingredients: "",
+    instructions: "",
+    description: "",
+    image: "",
 };

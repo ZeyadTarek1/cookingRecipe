@@ -3,7 +3,7 @@ import FileInput from "../../components/utils/input/FileInput";
 import TextAreaInput from "../../components/utils/input/TextAreaInput";
 import TypeInput from "../../components/utils/input/TypeInput";
 import { useNavigate } from "react-router";
-import { saveData } from "../../api";
+import { saveRecipe } from "../../api";
 import { recipeModel } from "../../models";
 import {
     CreateRecipeContainer,
@@ -37,7 +37,7 @@ function CreateRecipe() {
             const formData = new FormData();
             formData.append("image", myRecipe.image);
             formData.append("data", JSON.stringify(myRecipe));
-            await saveData("http://localhost:5000/createRecipe", formData);
+            await saveRecipe(formData);
             navigate("/");
         } catch (e) {
             console.log("error", e);

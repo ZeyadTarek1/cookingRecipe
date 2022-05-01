@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { deleteData } from "../../api";
+import { deleteRecipe } from "../../api";
 import { recipeModel } from "../../models";
 import "./RecipeCard.css";
 
@@ -16,11 +16,8 @@ const RecipeCard = ({
 }: recipeCard) => {
     let navigate = useNavigate();
 
-    const deleteRecipe = async () => {
-        const link = `http://localhost:5000/recipes/${_id}`;
-        console.log(link);
-
-        await deleteData(link);
+    const deleteRecipeHandler = async () => {
+        await deleteRecipe(_id);
         getData();
     };
 
@@ -44,7 +41,7 @@ const RecipeCard = ({
                     <button className="editBtn" onClick={navigateEditRecipe}>
                         Edit
                     </button>
-                    <button className="deleteBtn" onClick={deleteRecipe}>
+                    <button className="deleteBtn" onClick={deleteRecipeHandler}>
                         Delete
                     </button>
                 </div>
