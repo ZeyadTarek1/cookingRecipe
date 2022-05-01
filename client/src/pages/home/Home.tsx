@@ -10,8 +10,15 @@ function Home() {
     const [allRecipes, setAllrecipes] = useState<recipeModel[]>();
 
     const getdatafunction = async () => {
+        // const temp = await getRecipes();
+        // console.log("temp", temp);
+        // setAllrecipes(temp);
         setAllrecipes(await getRecipes());
     };
+
+    // useEffect(() => {
+    //     console.log(allRecipes);
+    // }, [allRecipes]);
 
     useEffect(() => {
         getdatafunction();
