@@ -3,7 +3,7 @@ import { defaultRecipe, recipeModel } from "./models";
 const link =
     process.env.NODE_ENV === "development"
         ? "http://localhost:5000"
-        : "https://cooking-recipes-tasty.herokuapp.com";
+        : "https://https://cooking-recipe-mern.herokuapp.com";
 
 export const getRecipes = async () => {
     try {
