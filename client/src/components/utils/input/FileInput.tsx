@@ -29,7 +29,7 @@ const FileInput = ({
         const { target } = event;
         inputFunction(target.files![0]);
         setFile(target.files![0]);
-        let temp = target.value.replace(/\\/gi, "#").split("#");
+        let temp = target.value.split("\\");
         setFileName(temp[temp.length - 1]);
     };
 
