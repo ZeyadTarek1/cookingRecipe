@@ -3,7 +3,7 @@ import { defaultRecipe, recipeModel } from "./models";
 const link =
     process.env.NODE_ENV === "development"
         ? "http://localhost:5000"
-        : "https://cooking-recipe-i1ic3v6dl-zeyadtarek1.vercel.app";
+        : "https://cooking-recipe-zeyadtarek1.vercel.app/";
 
 export const getRecipes = async () => {
     try {
