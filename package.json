@@ -6,7 +6,6 @@
     "scripts": {
         "start": " node server.js",
         "dev": "concurrently  \" nodemon server.js\" \"cd client && npm start\" ",
-        "__build__": "cd client && npm run build",
         "build": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
         "client": "cd client && npm start",
         "server": "nodemon server.js",
