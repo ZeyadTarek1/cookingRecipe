@@ -44,6 +44,7 @@ app.get("/getRecipes", async (req, res) => {
         res.send(data);
     } catch (e) {
         res.status(500).send(e);
+        console.log("Server crash, ", e);
     }
 });
 
