@@ -25,3 +25,4 @@ yarn-error.log*
 server/login.js
 server/.env
 .env
+playground.ts
